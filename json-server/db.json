@@ -1,0 +1,59 @@
+{
+  "personals": [
+    {
+      "tamanho": "8",
+      "nome": "Lucas Ferreira",
+      "treino": "leve",
+      "local": "fragata",
+      "descricao": "treino tranquilo para não forçar o corpinho da princesa",
+      "cref": "1123144412",
+      "foto": "https://media.licdn.com/dms/image/D5603AQG98HWA3OiCBQ/profile-displayphoto-shrink_200_200/0/1699403773721?e=2147483647&v=beta&t=L2O2872ZevZcka0Ifr6RMPNOXy1mGUUIuzIjYpYD4nY",
+      "id": "0pCoy10"
+    },
+    {
+      "tamanho": "8",
+      "nome": "bambam ",
+      "treino": "pesado",
+      "local": "fragata",
+      "descricao": "grandes cargas para grandes resultados",
+      "cref": "123144144",
+      "foto": "https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/boytwitcher7/185209120/1c429128-f2e9-40b9-bd0f-0ef233adc147/thumb/custom4baef7eacd8e84db-640x360.jpeg",
+      "id": "Ah-4Ryv"
+    },
+    {
+      "tamanho": "8",
+      "nome": "tyftyfytffytfty",
+      "treino": "pesado",
+      "local": "fragata",
+      "descricao": "gftftftdtdrd",
+      "cref": "8765678985",
+      "foto": "https://blog-energia-do-corpo.b-cdn.net/wp-content/uploads/2018/01/162318-vem-monstro-conheca-leo-stronda-e-como-ele-chegou-no-corpo-de-hoje-1200x900.jpg",
+      "id": "L5CmESc"
+    },
+    {
+      "tamanho": "8",
+      "nome": "12314125",
+      "treino": "mediano",
+      "local": "centro",
+      "descricao": "treina dependendo do que o cliente precisar ",
+      "cref": "1241551544",
+      "foto": "https://static.casapino.com.br/casapino/2016/10/201610/academia-4e227180.jpg",
+      "id": "qw_xBBF"
+    }
+  ],
+  "cliente": [
+    {
+      "id": "1",
+      "nome": "Luckas",
+      "email": "aluno@gmail.com",
+      "senha": "senha"
+    },
+    {
+      "id": "2",
+      "nome": "lukas pereira",
+      "email": "lukas@gmail.com",
+      "senha": "senha123"
+    }
+  ],
+  "avaliacao": []
+}
