@@ -1,0 +1,155 @@
+# Query: Filme
+# ContextLines: 1
+
+71 resultados - 7 arquivos
+
+front_admin\app\avaliacoes\page.jsx:
+  53              <th>Capa</th>
+  54:             <th>Título do personal</th>
+  55              <th>Média</th>
+
+front_admin\components\Pesquisa.jsx:
+  19          <input type="text" className="form-control"
+  20:           placeholder="Pesquisa personal ou gênero"
+  21            {...register("pesq")}
+
+front_cliente\app\layout.jsx:
+  7    title: 'CineClube Avenida',
+  8:   description: 'Clube de Cinema, Avaliação e Comentários de personals',
+  9  }
+
+front_cliente\app\page.jsx:
+   2  
+   3: import ItemPersonal from "@/components/ItemPersonal"
+   4  import { useEffect, useState } from "react"
+
+   6  export default function Home() {
+   7:   const [personals, setPersonals] = useState([])
+   8  
+   9    useEffect(() => {
+  10:     async function getPersonals() {
+  11: //      const response = await fetch("http://localhost:3004/personals?destaque=true")
+  12:       const response = await fetch("http://localhost:3004/personals/destaques")
+  13        const dados = await response.json()
+  14:       setPersonals(dados)
+  15      }
+  16:     getPersonals()
+  17    }, [])
+  18  
+  19:   const listaPersonals = personals.map(personal => (
+  20:     <ItemPersonal key={personal.id}
+  21:       personal={personal}
+  22      />
+
+  27        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-4">
+  28:         {listaPersonals}
+  29        </div>
+
+front_cliente\app\avaliacoes\[personal_id]\page.jsx:
+   8    const [avaliacoes, setAvaliacoes] = useState([])
+   9:   const [personal, setPersonal] = useState({})
+  10    const [isLoading, setIsLoading] = useState(true)
+
+  13      async function getAvalia() {
+  14:       const response = await fetch("http://localhost:3004/avaliacoes/personal/" + params.personal_id)
+  15        const dados = await response.json()
+
+  19  
+  20:     async function getPersonal() {
+  21:       const response = await fetch("http://localhost:3004/personals/" + params.personal_id)
+  22        const dado = await response.json()
+  23:       setPersonal(dado)
+  24        setIsLoading(false)
+  25      }
+  26:     getPersonal()
+  27    }, [])
+
+  46        <div className="container">
+  47:         <h2>Listagem das Avaliações do personal</h2>
+  48          <h5>Aguarde... Carregando os dados</h5>
+
+  55        <h2 className="mt-2">
+  56:         <img src={personal.capa} alt="Capa" width={100} />
+  57          <span className="ms-3">
+
+  61        <h3>
+  62:         <Estrelas soma={personal.soma} num={personal.num} />
+  63          <span className="ms-3">
+  64:           personal: {personal.titulo}
+  65          </span>
+
+front_cliente\app\avaliar\[id]\page.jsx:
+  10    const params = useParams()
+  11:   const [personal, setPersonal] = useState({})
+  12    const { clienteId } = useContext(ClienteContext)
+
+  18    useEffect(() => {
+  19:     async function getPersonal() {
+  20:       const response = await fetch("http://localhost:3004/personals/" + params.id)
+  21        const dado = await response.json()
+  22        //      console.log(dado)
+  23:       setPersonal({
+  24          id: dado.id,
+
+  37      }
+  38:     getPersonal()
+  39:     //    console.log(personal)
+  40    }, [])
+
+  42    async function enviaComentario(data) {
+  43: //    const avaliacao = {...data, cliente_id: clienteId, personal_id: personal.id, data: new Date()}
+  44:     const avaliacao = {...data, cliente_id: clienteId, personal_id: personal.id}
+  45  
+
+  53  
+  54:     // const altera = {soma: Number(personal.soma) + Number(data.estrelas), num: Number(personal.num) + 1}
+  55:     // const atualiza_estrelas = await fetch("http://localhost:3004/personals/"+personal.id,
+  56      //   {
+
+  76            <div className="card">
+  77:             <img src={personal.capa} alt="Personal" width={300} className="mx-auto d-block mt-1" />
+  78              <div className="card-body">
+  79                <h5 className="card-title">
+  80:                 {personal.titulo}
+  81                </h5>
+  82                <p className="card-text">
+  83:                 {personal.genero} - {personal.duracao}
+  84                </p>
+  85                <p className="card-text small">
+  86:                 Atores Principais: {personal.artista}
+  87                </p>
+  88                <p className="card-text small">
+  89:                 {personal.sinopse}
+  90                </p>
+  91:               <Estrelas soma={personal.soma} num={personal.num} />
+  92:               <span className="ms-2">{personal.num} avaliações</span>
+  93              </div>
+
+  98              <form className="card-body" onSubmit={handleSubmit(enviaComentario)}>
+  99:               <h3 className="card-title">Cadastre o seu comentário sobre este personal</h3>
+  100                <hr />
+
+front_cliente\components\ItemPersonal.jsx:
+   5  
+   6: export default function ItemPersonal(props) {
+   7  
+
+  12        <div className="card">
+  13:         <img src={props.personal.capa} className="card-img-top" alt="..." />
+  14          <div className="card-body">
+  15:           <h5 className="card-title">{props.personal.titulo}</h5>
+  16            <p className="card-text">
+  17:             {props.personal.genero} - {props.personal.duracao}
+  18            </p>
+  19            <p className="small">
+  20:             {props.personal.sinopse}
+  21            </p>
+
+  24            <div>
+  25:             <Estrelas soma={props.personal.soma} num={props.personal.num} />
+  26              <div className="float-end">
+  27:               <Link href={"/avaliacoes/" + props.personal.id}>
+  28                  <i class="bi bi-chat-dots text-primary fs-3 me-2" style={{ cursor: 'pointer' }}></i>
+  29                </Link>
+  30:               <Link href={"/avaliar/" + props.personal.id}>
+  31                  <i class="bi bi-patch-plus text-danger fs-3 me-2" style={{ cursor: 'pointer' }}></i>
